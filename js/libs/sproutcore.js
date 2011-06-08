@@ -19198,7 +19198,7 @@ SC.Store = SC.Object.extend( /** @scope SC.Store.prototype */ {
     var ret = get(this, 'dataSource');
     if (typeof ret === 'string') {
       ret = getPath( ret);
-      if (ret && ret.isClass) ret = ret.create();
+      if (ret) ret = ret.create();
       if (ret) set(this, 'dataSource', ret);
     }
     return ret;
@@ -20239,7 +20239,7 @@ SC.Store = SC.Object.extend( /** @scope SC.Store.prototype */ {
 
     // if commit records is enabled
     if(get(this, 'commitRecordsAutomatically')){
-      this.invokeLast(this.commitRecords);
+      SC.run.once(this, this.commitRecords);
     }
 
     // Finally return materialized record, after we propagate the status to
@@ -20413,7 +20413,7 @@ SC.Store = SC.Object.extend( /** @scope SC.Store.prototype */ {
 
     // if commit records is enabled
     if(get(this, 'commitRecordsAutomatically')){
-      this.invokeLast(this.commitRecords);
+      SC.run.once(this, this.commitRecords);
     }
 
     var that = this;
@@ -20570,7 +20570,7 @@ SC.Store = SC.Object.extend( /** @scope SC.Store.prototype */ {
 
     // if commit records is enabled
     if(get(this, 'commitRecordsAutomatically')){
-      this.invokeLast(this.commitRecords);
+      SC.run.once(this, this.commitRecords);
     }
 
     return this ;
