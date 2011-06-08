@@ -1,5 +1,7 @@
 Todos = SC.Application.create({
-  store: SC.Store.create().from(SC.Record.fixtures)
+  store: SC.Store.create({
+    commitRecordsAutomatically: YES
+  }).from('SC.LocalStorageDataSource')
 });
 
 
@@ -7,21 +9,6 @@ Todos.Todo = SC.Record.extend({
   title: SC.Record.attr(String),
   isDone: SC.Record.attr(Boolean, { defaultValue: NO })
 });
-
-Todos.Todo.FIXTURES = [
- 
-    { "guid": "todo-1",
-      "title": "Build my first SproutCore app",
-      "isDone": false },
- 
-    { "guid": "todo-2",
-      "title": "Build a really awesome SproutCore app",
-      "isDone": false },
- 
-    { "guid": "todo-3",
-      "title": "Next, the world!",
-      "isDone": false }
-];
 
 Todos.todosController = SC.ArrayProxy.create({
   content: [],
